@@ -9,7 +9,10 @@ async fn main() {
 
     tokio::spawn(async {
         loop {
-            println!("Hei verden");
+            println!(
+                "{}",
+                std::env::var("THE_SECRET").unwrap_or_else(|err| err.to_string())
+            );
             tokio::time::sleep(Duration::from_secs(60)).await;
         }
     });
